@@ -1,5 +1,6 @@
 ## Please, only use Hound on your own unwanted datas!  
 ### This package was made to work only on Debian distros!  
+![hound-icon](https://github.com/Z-Kasanmonavar/Hound/assets/47051741/0c73d35c-1037-4a83-b0e9-f831705d4f42)
 ### What Hound have :
 * Destroy the file.s content, by moving the bytes randomly inside the file.
 * Choose the number of iterations, to increase the safety!
@@ -30,5 +31,5 @@ wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb
 `-h (--help)` : display help.  
 
 I hope this program will be helpful to you and that you'll do on your own datas! ^^
-#### Credit :
+### Credit :
 The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insanes animation and I encourage you to see his work! ^^  
