@@ -3,9 +3,9 @@
 
 #### To install the 'Hound' package you can input those commands into your terminal :  
 
-wget 'https://github.com/Z-Kasanmonavar/Hound/raw/main/hound.deb'  
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb'  
 sudo apt install ./hound.deb
 
 #### Or you can copy and paste this command, for a clean installation :  
 
-wget 'https://github.com/Z-Kasanmonavar/Hound/raw/main/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
