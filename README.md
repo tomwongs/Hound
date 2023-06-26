@@ -1,11 +1,32 @@
-# ! This Linux package is made for destroying your own datas, you SHOULDN'T use it on datas that AREN'T yours !
-### This package was only tested to work on Debian and Ubuntu  
+## Please, only use Hound on your own unwanted datas!  
+### This package was made to work only on Debian distros!  
+### What Hound have :
+* Destroy the file.s content, by moving the bytes randomly inside the file.
+* Choose the number of iterations, to increase the safety!
+* Comfy Terminal use!
 
-#### To install the 'Hound' package you can input those commands into your terminal :  
-
-wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb'  
+### Install Hound :
+```
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb'
+```
+```
 sudo apt install ./hound.deb
+```
 
-#### Or you can copy and paste this command, for a clean installation :  
+### Or you can copy and paste this command, for a clean installation :  
 
-wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
+```
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb`
+```
+
+### How can I use it? :
+
+#### Common usage :   
+`hound [<switches>..] <folder/file>`   
+
+#### Switches :  
+`-a (--angry) [number]` : number of iteration done (default: 1).  
+`-c (--chomp)` : leave the file unreadable and unrecoverable.  
+`-h (--help)` : display help.  
+
+I hope this program will be helpful to you and that you'll do on your own datas! ^^
