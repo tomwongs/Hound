@@ -3,3 +3,4 @@
 
 For the moment the package is just an executable, you have to create an alias in your '~/.bashrc' file to be able to use it anywhere.
 I'll work later on making it a true package that just have to be install using the 'wget' & 'apt' command.
+This is a test!
