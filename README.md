@@ -30,6 +30,6 @@ wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb
 `-c (--chomp)` : leave the file unreadable and unrecoverable.  
 `-h (--help)` : display help.  
 
-I hope this program will be helpful to you and that you'll do on your own datas! ^^
+I hope this program will be helpful to you and that you'll use Hound do on your own datas! ^^
 ### Credit :
 The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^  
