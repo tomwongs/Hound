@@ -31,5 +31,11 @@ wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb
 `-h (--help)` : display help.  
 
 I hope this program will be helpful to you and that you'll use Hound on your own datas! ^^
+
+### Contributions : 
+This github is more a place for me to share my programs and store them.  
+I'm not ready yet to deal with a project modified by other people.  
+Thanks for your understanding.  
+
 ### Credit :
 The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^  
