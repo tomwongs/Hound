@@ -39,6 +39,8 @@ Thanks for your understanding.
 
 ### Credit :
 The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^  
-
+______
 I hope you don't like this project too much, because the source code got corrupted when changing my computer ^^'  
-So I won't be able to release other versions with patches or corrections...
+So I won't be able to release other versions with patches or corrections...  
+I'll maybe rewrite the code and the software, but more clean.  
+After all, what is 400 lines of code? T w T
