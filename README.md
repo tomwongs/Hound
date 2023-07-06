@@ -39,3 +39,6 @@ Thanks for your understanding.
 
 ### Credit :
 The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^  
+
+I hope you don't like this project too much, because I've lost the source code when changing my computer ^^'
+So I won't be able to release other versions with patches or corrections...
