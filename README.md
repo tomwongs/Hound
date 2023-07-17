@@ -2,7 +2,7 @@
 ### This package was made to work only on Debian distros!  
 ![hound-icon](https://github.com/tomwongs/hound/assets/47051741/086fd1b1-fb75-4250-9eba-26c816065588)
 ### What Hound have :
-* Destroy the file.s content, by overwriting it with random data
+* Destroy the file.s content, by overwriting it with random datas
 * Choose the number of iterations, to increase the safety!
 * Comfy Terminal use!
 
