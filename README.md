@@ -8,7 +8,7 @@
 
 ### Install Hound :
 ```
-wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb'
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v2.0.0/hound.deb'
 ```
 ```
 sudo apt install ./hound.deb
@@ -17,7 +17,7 @@ sudo apt install ./hound.deb
 ### Or you can copy and paste this command, for a clean installation :  
 
 ```
-wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v1.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
+wget 'https://github.com/Z-Kasanmonavar/Hound/releases/download/v2.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
 ```
 
 ### How can I use it? :
@@ -37,10 +37,10 @@ This github is more a place for me to share my programs and store them.
 I'm not ready yet to deal with a project modified by other people.  
 Thanks for your understanding.  
 
+### About Hound :
+After loosing the source code of Hound v1.0.0, I decided to rewrite Hound from scratch.
+This unfortunate event gave me the opportunity of bettering my code, I've written it with less line, and is now less consuming!
+I'm quite proud of this new Hound and I don't regret the old source-code! ^^
+
 ### Credit :
-The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^  
-______
-I hope you don't like this project too much, because the source code got corrupted when changing my computer ^^'  
-So I won't be able to release other versions with patches or corrections...  
-I'll maybe rewrite the code and the software, but more clean.  
-After all, what is 400 lines of code? T w T
+The illustration of Hound was made by [@wingedwolf94](https://www.youtube.com/@wingedwolf94), this guy does insane animations and I encourage you to see his work! ^^
