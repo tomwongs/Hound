@@ -38,8 +38,8 @@ I'm not ready yet to deal with a project modified by other people.
 Thanks for your understanding.  
 
 ### About Hound :
-After loosing the source code of Hound v1.0.0, I decided to rewrite Hound from scratch.
-This unfortunate event gave me the opportunity of bettering my code, I've written it with less line, and is now less consuming!
+After loosing the source code of Hound v1.0.0, I've decided to rewrite Hound from scratch.
+This unfortunate event gave me the opportunity of bettering my code, I've written it with less line, it's now less consuming and more easy to the eyes!
 I'm quite proud of this new Hound and I don't regret the old source-code! ^^
 
 ### Credit :
