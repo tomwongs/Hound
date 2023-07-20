@@ -8,7 +8,7 @@
 
 ### Install Hound :
 ```
-wget 'https://github.com/tomwongs/hound/releases/download/v2.0.0/hound.deb'
+wget 'https://github.com/tomwongs/hound/releases/download/v2.1.0/hound.deb'
 ```
 ```
 sudo apt install ./hound.deb
@@ -17,7 +17,7 @@ sudo apt install ./hound.deb
 ### Or you can copy and paste this command, for a clean installation :  
 
 ```
-wget 'https://github.com/tomwongs/hound/releases/download/v2.0.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
+wget 'https://github.com/tomwongs/hound/releases/download/v2.1.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
 ```
 
 ### How can I use it? :
