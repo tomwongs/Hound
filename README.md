@@ -7,22 +7,11 @@
 * Comfy Terminal use!
 
 ### Install Hound :
-Download:
+Install :
 ```
-wget -o hound 'https://github.com/tomwongs/hound/releases/download/v2.2.0/hound'
-```
-Intall:
-```
-sudo mv hound /usr/bin
+sudo rm /usr/bin/hound; sudo wget 'https://github.com/tomwongs/hound/releases/download/v2.2.0/hound'; sudo mv hound /usr/bin; sudo chmod +x /usr/bin/hound
 ```
 note that you need to move the file to a path that is referenced in the '$PATH' variable!
-
-### Or you can copy and paste this command, for a clean installation :  
-
-```
-wget -o hound 'https://github.com/tomwongs/hound/releases/download/v2.2.0/hound; sudo mv hound /usr/bin
-```
-
 ### How can I use it? :
 
 #### Common usage :   
