@@ -1,5 +1,5 @@
 ## Please, only use Hound on your own unwanted datas!  
-### This package was made to work only on Debian distros!  
+## Hound is compatible for any Linux distro!   
 ![hound-icon](https://github.com/tomwongs/hound/assets/47051741/086fd1b1-fb75-4250-9eba-26c816065588)
 ### What Hound have :
 * Destroy the file.s content, by overwriting it with random datas
@@ -7,17 +7,20 @@
 * Comfy Terminal use!
 
 ### Install Hound :
+Download:
 ```
-wget 'https://github.com/tomwongs/hound/releases/download/v2.1.0/hound.deb'
+wget -o hound 'https://github.com/tomwongs/hound/releases/download/v2.2.0/hound'
 ```
+Intall:
 ```
-sudo apt install ./hound.deb
+sudo mv hound /usr/bin
 ```
+note that you need to move the file to a path that is referenced in the '$PATH' variable!
 
 ### Or you can copy and paste this command, for a clean installation :  
 
 ```
-wget 'https://github.com/tomwongs/hound/releases/download/v2.1.0/hound.deb' hound.deb; sudo apt install ./hound.deb; rm --force ./hound.deb
+wget -o hound 'https://github.com/tomwongs/hound/releases/download/v2.2.0/hound; sudo mv hound /usr/bin
 ```
 
 ### How can I use it? :
@@ -38,9 +41,9 @@ I'm not ready yet to deal with a project modified by other people.
 Thanks for your understanding.  
 
 ### Changelogs :
-This new version of Hound (v2.1.0) bring:
-  - Bug fixes
-  - A progress bar
+This new version of Hound (v2.2.0) bring:
+  - Bug fixes for the progress bar
+  - Compatibility for all distros
 I hope you'll enjoy it! ^^   
 
 ### Credit :
