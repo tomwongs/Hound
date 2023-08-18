@@ -9,7 +9,7 @@
 ### Install Hound :
 Install :
 ```
-sudo wget 'www.github.com/tomwongs/hound/releases/download/v2.2.0/hound' -O '/usr/bin/hound'; chmod +x '/usr/bin/hound'
+sudo wget 'www.github.com/tomwongs/hound/releases/download/v2.2.0/hound' -O '/usr/bin/hound'; sudo chmod +x '/usr/bin/hound'
 ```
 note that you need to move the file to a path that is referenced in the '$PATH' variable!
 ### How can I use it? :
