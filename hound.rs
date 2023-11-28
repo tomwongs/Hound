@@ -3,6 +3,7 @@
 use std::env; // To collect arguments.
 use std::path::Path; // To have the path of a file as object.
 use std::process::{Command, Stdio}; // To spawn commands and use pipes.
+
 use std::alloc::System; // Remove jemalloc to minimise size.
 #[global_allocator]
 static A: System = System;
@@ -45,7 +46,7 @@ const H_ICO: &str =
 fn main() {
     let raw_args: Vec<String> = env::args().collect();
     let args_len: usize = raw_args.len();
-	if args_len==1 { help(&raw_args[0]); return; }
+    if args_len==1 { help(&raw_args[0]); return; }
     let mut baked_args: String = String::new();
     let mut ang_factor: usize = 1;
 
@@ -233,6 +234,7 @@ fn help(args: &String) {
         println!("  {}<Switches>{}", H_COL[6], H_COL[0]);
         println!("  -a (--angry) : the file will get {}massacred{} [x] more time.", &H_COL[1], &H_COL[0]);
         println!("  -c (--chomp) : doesn't {}devour{} the file at the end.", &H_COL[1], &H_COL[0]);
+        println!("  {}Example{} : 'hound -a=6c file' will chomp the file 6 times and not {}devour{} it.", &H_COL[6], &H_COL[0], &H_COL[1], &H_COL[0]);
         println!("");
         println!("  {}! DISCLAMER !{}", &H_COL[6], &H_COL[0]);
         println!("  {}ONLY{} use Hound, on your {}OWN{} datas!", &H_COL[4], &H_COL[0], &H_COL[4], &H_COL[0]);
