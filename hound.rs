@@ -70,6 +70,10 @@ fn main() {
 		}
 		
 		if raw_args[i].chars().nth(1).unwrap() != '-' { // I need to fix this, the argument that contains only one dash ( - ) and doesn't exist aren't detected..
+            if raw_args[i].contains('h') {
+                help(&raw_args[i-1]);
+                return;
+            }
 			if raw_args[i].contains('a') {
 				if angry(&raw_args[i], &mut ang_factor) == false {return;}
 			}
