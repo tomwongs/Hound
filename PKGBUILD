@@ -1,6 +1,6 @@
 pkgname='hound'
 pkgver='2.2.0'
-pkgrel='0'
+pkgrel='2'
 arch=('any')
 pkgdesc='Hound is a Linux package made to destroy sensible datas, with no chances of recovery.'
 depends=('rust')
