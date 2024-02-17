@@ -16,7 +16,10 @@
 #define NO 1
 
 int help();
+int isDirectory();
+int dDestroy();
 int fDestroy();
+int fDelete();
 
 char color[7][10]={
 	"\033[0m",	// 0: Default
@@ -101,25 +104,36 @@ int isDirectory(char *targetPath) {
 	}
 }
 
-int fDelete(char *targetPath, char *info) {
-	if (info[0] != 0) { return SUCCESS; }
 
-	if (remove(targetPath) == SUCCESS) {
-		printf("%s%s%s \t: Devoured!\n", color[2], targetPath, color[0]);
-		return SUCCESS;
-	}
-	else {
-		printf("%s%s \t: Couldn't Devour!%s\n", color[4], targetPath, color[0]);
+
+
+
+int dDestroy(char *targetPath, char *info) {
+	DIR *dTarget;
+	struct dirent *entry;
+
+	dTarget = opendir(targetPath);
+
+	if (dTarget == NULL) {
+		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
 		return ERR;
 	}
 
-	printf("Unknown error on deciding if Hound should devour or not the target.");
-	return ERR;
-}
+	while ((entry = readdir(dTarget)) != NULL) {
 
+		if (entry->d_type == DT_REG) {
+			char fullPath[sizeof(targetPath)+sizeof(entry->d_name)];
+			snprintf(fullPath, sizeof(fullPath), "%s/%s", targetPath, entry->d_name);
 
-int dDestroy(char *targetPath) {
-	printf("Hound cannot yet take care of directories.\n");
+			fDestroy(fullPath, info);
+		}
+
+	}
+
+	if (closedir(dTarget) == ERR) {
+		printf("%sThe directory '%s' couldn't be closed%s\n", color[4], entry->d_name, color[0]);
+		return ERR;
+	}
 	return SUCCESS;
 }
 
@@ -132,7 +146,7 @@ int fDestroy(char *targetPath, char *info) {
 
 	// Check if the target exist.
 	if (access(targetPath, F_OK) != SUCCESS) {
-		printf("The target doesn't exist!");
+		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
 		return ERR;
 	}
 
@@ -141,7 +155,7 @@ int fDestroy(char *targetPath, char *info) {
 	if (isDir == ERR) { return ERR; }
 
 	if (isDir == YES) {
-		return dDestroy(targetPath);
+		return dDestroy(targetPath, info);
 	}
 
 	// Get the file size.
@@ -168,6 +182,24 @@ int fDestroy(char *targetPath, char *info) {
 	fclose(fTarget);
 	return fDelete(targetPath, info);
 }
+
+
+int fDelete(char *targetPath, char *info) {
+	if (info[0] != 0) { return SUCCESS; }
+
+	if (remove(targetPath) == SUCCESS) {
+		printf("%s%s%s \t: Devoured!\n", color[2], targetPath, color[0]);
+		return SUCCESS;
+	}
+	else {
+		printf("%s%s \t: Couldn't Devour!%s\n", color[4], targetPath, color[0]);
+		return ERR;
+	}
+
+	printf("Unknown error on deciding if Hound should devour or not the target.");
+	return ERR;
+}
+
 
 int help() {
 	printf(houndIcon);
