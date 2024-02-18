@@ -7,8 +7,10 @@
 #include <unistd.h>
 #include <time.h>
 #include <ctype.h>
+#include <libgen.h>
 
 // File Creation: 11/02/2024 16:24
+// Find another algorithm for sub dir (recursive calls inefficient and greedy, lazy solution for future me problems).
 
 #define SUCCESS 0
 #define ERR -1
@@ -17,6 +19,7 @@
 
 int help();
 int isDirectory();
+int tIdentifier();
 int dDestroy();
 int fDestroy();
 int fDelete();
@@ -80,7 +83,7 @@ int main(int argCount, char *argValue[]) {
 			continue;
 		}
 
-		fDestroy(argValue[i], info);
+		tIdentifier(argValue[i], info);
 	}
 
 	return SUCCESS;
@@ -105,7 +108,30 @@ int isDirectory(char *targetPath) {
 }
 
 
+int tIdentifier(char *targetPath, char *info) {
 
+	int isDir;
+	char *name = basename(targetPath);
+
+	if ( strcmp(name, ".") == 0 || strcmp(name, "..") == 0 ) { return SUCCESS; }
+
+	// Check if the target exist.
+	if (access(targetPath, F_OK) != SUCCESS) {
+		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
+		return ERR;
+	}
+
+	// IsDir
+	isDir = isDirectory(targetPath);
+	if (isDir == ERR) { return ERR; }
+
+	if (isDir == YES) {
+		return dDestroy(targetPath, info);
+	}
+
+	return fDestroy(targetPath, info);
+
+}
 
 
 int dDestroy(char *targetPath, char *info) {
@@ -120,14 +146,11 @@ int dDestroy(char *targetPath, char *info) {
 	}
 
 	while ((entry = readdir(dTarget)) != NULL) {
+		
+		char fullPath[sizeof(targetPath)+sizeof(entry->d_name)];
+		snprintf(fullPath, sizeof(fullPath), "%s/%s", targetPath, entry->d_name);
 
-		if (entry->d_type == DT_REG) {
-			char fullPath[sizeof(targetPath)+sizeof(entry->d_name)];
-			snprintf(fullPath, sizeof(fullPath), "%s/%s", targetPath, entry->d_name);
-
-			fDestroy(fullPath, info);
-		}
-
+		tIdentifier(fullPath, info);
 	}
 
 	if (closedir(dTarget) == ERR) {
@@ -140,23 +163,9 @@ int dDestroy(char *targetPath, char *info) {
 
 int fDestroy(char *targetPath, char *info) {
 
-	int isDir;
 	long targetBytes;
 	FILE *fTarget;
 
-	// Check if the target exist.
-	if (access(targetPath, F_OK) != SUCCESS) {
-		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
-		return ERR;
-	}
-
-	// Dir Manager.
-	isDir = isDirectory(targetPath);
-	if (isDir == ERR) { return ERR; }
-
-	if (isDir == YES) {
-		return dDestroy(targetPath, info);
-	}
 
 	// Get the file size.
 	fTarget = fopen(targetPath, "rb+");
