@@ -11,6 +11,7 @@
 
 // File Creation: 11/02/2024 16:24
 // Find another algorithm for sub dir (recursive calls inefficient and greedy, lazy solution for future me problems).
+// Add the angry function
 
 #define SUCCESS 0
 #define ERR -1
@@ -115,6 +116,7 @@ int tIdentifier(char *targetPath, char *info) {
 
 	if ( strcmp(name, ".") == 0 || strcmp(name, "..") == 0 ) { return SUCCESS; }
 
+
 	// Check if the target exist.
 	if (access(targetPath, F_OK) != SUCCESS) {
 		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
@@ -129,6 +131,7 @@ int tIdentifier(char *targetPath, char *info) {
 		return dDestroy(targetPath, info);
 	}
 
+
 	return fDestroy(targetPath, info);
 
 }
@@ -136,27 +139,61 @@ int tIdentifier(char *targetPath, char *info) {
 
 int dDestroy(char *targetPath, char *info) {
 	DIR *dTarget;
-	struct dirent *entry;
+	char *subPath[] = { targetPath };
+	int cSize = 0; 
 
-	dTarget = opendir(targetPath);
 
-	if (dTarget == NULL) {
-		printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
-		return ERR;
+	while (cSize >= 0) {
+
+		char currentDir[sizeof(subPath[cSize])];
+		strcpy(currentDir, subPath[cSize]);
+
+		char fullPath[sizeof(currentDir)];
+
+		dTarget = opendir(subPath[cSize]);
+		subPath[cSize] = '\0';
+		cSize--;
+
+		if (dTarget == NULL) {
+			printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
+			return ERR;
+		}
+
+		struct dirent *contentDir;
+
+		while ((contentDir = readdir(dTarget)) != NULL) {
+
+			if (strcmp(contentDir->d_name, ".") == 0 || strcmp(contentDir->d_name, "..") == 0) {
+				continue;
+			}
+
+			
+			strcpy(fullPath, currentDir);
+
+			strcat(fullPath, "/");
+			strcat(fullPath, contentDir->d_name);
+
+			printf("currentDir:%s \ncontentDir: %s \nfull: %s\n", currentDir, contentDir->d_name, fullPath); // currentDir change value at the 3rd iteration for some reason and take random value from memory
+
+			if (contentDir->d_type == DT_DIR) {
+				cSize++;
+				subPath[cSize] = fullPath;
+
+			} else {
+				fDestroy(fullPath);
+			}
+
+		}
+
+		if (closedir(dTarget) == ERR) {
+			printf("%sThe directory '%s' couldn't be closed%s\n", color[4], contentDir->d_name, color[0]);
+			return ERR;
+		}
+
 	}
 
-	while ((entry = readdir(dTarget)) != NULL) {
-		
-		char fullPath[sizeof(targetPath)+sizeof(entry->d_name)];
-		snprintf(fullPath, sizeof(fullPath), "%s/%s", targetPath, entry->d_name);
+	
 
-		tIdentifier(fullPath, info);
-	}
-
-	if (closedir(dTarget) == ERR) {
-		printf("%sThe directory '%s' couldn't be closed%s\n", color[4], entry->d_name, color[0]);
-		return ERR;
-	}
 	return SUCCESS;
 }
 
@@ -166,6 +203,7 @@ int fDestroy(char *targetPath, char *info) {
 	long targetBytes;
 	FILE *fTarget;
 
+	printf("fDestroy : %s\n", targetPath);
 
 	// Get the file size.
 	fTarget = fopen(targetPath, "rb+");
