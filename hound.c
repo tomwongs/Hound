@@ -145,12 +145,19 @@ int dDestroy(char *targetPath, char *info) {
 
 	while (cSize >= 0) {
 
-		char currentDir[sizeof(subPath[cSize])];
+		char currentDir[sizeof(subPath[cSize])/sizeof(subPath[cSize][0])]; // Memory size isn't properly defined.
 		strcpy(currentDir, subPath[cSize]);
 
-		char fullPath[sizeof(currentDir)];
+		char* fullPath = malloc(sizeof(subPath[cSize]) / sizeof(char)); // same here.
 
-		dTarget = opendir(subPath[cSize]);
+		if (fullPath == NULL) {
+			printf("Memory Allocation Failed!\n");
+			return ERR;
+		}
+
+		printf("currentDir size: %d\n", sizeof(fullPath));
+
+		dTarget = opendir(currentDir);
 		subPath[cSize] = '\0';
 		cSize--;
 
@@ -190,8 +197,8 @@ int dDestroy(char *targetPath, char *info) {
 			return ERR;
 		}
 
+		free(fullPath);
 	}
-
 	
 
 	return SUCCESS;
