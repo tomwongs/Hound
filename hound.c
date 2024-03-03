@@ -137,7 +137,7 @@ int tIdentifier(char *targetPath, char *info) {
 }
 
 
-int dDestroy(char *targetPath, char *info) {
+int dDestroy(char *targetPath, char *info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
 	DIR *dTarget;
 	char *subPath[] = { targetPath };
 	int cSize = 0; 
@@ -145,17 +145,15 @@ int dDestroy(char *targetPath, char *info) {
 
 	while (cSize >= 0) {
 
-		char currentDir[sizeof(subPath[cSize])/sizeof(subPath[cSize][0])]; // Memory size isn't properly defined.
+		char currentDir[strlen(subPath[cSize])];
 		strcpy(currentDir, subPath[cSize]);
 
-		char* fullPath = malloc(sizeof(subPath[cSize]) / sizeof(char)); // same here.
+		char* fullPath = malloc(strlen(subPath[cSize]) * sizeof(char));
 
 		if (fullPath == NULL) {
 			printf("Memory Allocation Failed!\n");
 			return ERR;
 		}
-
-		printf("currentDir size: %d\n", sizeof(fullPath));
 
 		dTarget = opendir(currentDir);
 		subPath[cSize] = '\0';
@@ -175,6 +173,9 @@ int dDestroy(char *targetPath, char *info) {
 			}
 
 			
+			int newSize = ((strlen(currentDir)+strlen(contentDir->d_name)+1) * sizeof(char));
+
+			fullPath = realloc(fullPath, newSize);
 			strcpy(fullPath, currentDir);
 
 			strcat(fullPath, "/");
