@@ -139,7 +139,8 @@ int tIdentifier(char *targetPath, char *info) {
 
 int dDestroy(char *targetPath, char *info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
 	DIR *dTarget;
-	char *subPath[] = { targetPath };
+	char** subPath = (char**) malloc(sizeof(char*));
+	subPath[0] = targetPath;
 	int cSize = 0; 
 
 
@@ -148,12 +149,6 @@ int dDestroy(char *targetPath, char *info) { // It seems that the subPath value 
 		char currentDir[strlen(subPath[cSize])];
 		strcpy(currentDir, subPath[cSize]);
 
-		char* fullPath = malloc(strlen(subPath[cSize]) * sizeof(char));
-
-		if (fullPath == NULL) {
-			printf("Memory Allocation Failed!\n");
-			return ERR;
-		}
 
 		dTarget = opendir(currentDir);
 		subPath[cSize] = '\0';
@@ -175,17 +170,15 @@ int dDestroy(char *targetPath, char *info) { // It seems that the subPath value 
 			
 			int newSize = ((strlen(currentDir)+strlen(contentDir->d_name)+1) * sizeof(char));
 
-			fullPath = realloc(fullPath, newSize);
+			char fullPath[newSize];
 			strcpy(fullPath, currentDir);
 
 			strcat(fullPath, "/");
 			strcat(fullPath, contentDir->d_name);
 
-			printf("currentDir:%s \ncontentDir: %s \nfull: %s\n", currentDir, contentDir->d_name, fullPath); // currentDir change value at the 3rd iteration for some reason and take random value from memory
-
 			if (contentDir->d_type == DT_DIR) {
 				cSize++;
-				subPath[cSize] = fullPath;
+				strcpy(subPath[cSize], fullPath);
 
 			} else {
 				fDestroy(fullPath);
@@ -198,7 +191,6 @@ int dDestroy(char *targetPath, char *info) { // It seems that the subPath value 
 			return ERR;
 		}
 
-		free(fullPath);
 	}
 	
 
