@@ -21,6 +21,7 @@
 int help();
 int isDirectory();
 int tIdentifier();
+int dScan();
 int dDestroy();
 int fDestroy();
 int fDelete();
@@ -128,7 +129,7 @@ int tIdentifier(char *targetPath, char *info) {
 	if (isDir == ERR) { return ERR; }
 
 	if (isDir == YES) {
-		return dDestroy(targetPath, info);
+		return dScan(targetPath, info);
 	}
 
 
@@ -136,23 +137,23 @@ int tIdentifier(char *targetPath, char *info) {
 
 }
 
-
-int dDestroy(char* targetPath, char* info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
+int dScan(char* targetPath, char* info) {
 	DIR *dTarget;
 	char** subPath = (char**) malloc(sizeof(char*));
 	subPath[0] = targetPath;
 	int cSize = 0; 
+	bool isThereDir = true;
 
 
-	while (cSize >= 0) {
+	while (isThereDir) {
 
+		printf("%d", cSize);
 		char currentDir[strlen(subPath[cSize])];
 		strcpy(currentDir, subPath[cSize]);
+		isThereDir = false;
 
 
 		dTarget = opendir(currentDir);
-		subPath[cSize] = '\0';
-		cSize--;
 
 		if (dTarget == NULL) {
 			printf("%sThe target doesn't exist!%s\n", color[4], color[0]);
@@ -177,13 +178,10 @@ int dDestroy(char* targetPath, char* info) { // It seems that the subPath value 
 			strcat(fullPath, contentDir->d_name);
 
 			if (contentDir->d_type == DT_DIR) {
+				isThereDir = true;
 				cSize++;
 				subPath[cSize] = strdup(fullPath);
-
-			} else {
-				fDestroy(fullPath);
 			}
-
 		}
 
 		if (closedir(dTarget) == ERR) {
@@ -191,9 +189,19 @@ int dDestroy(char* targetPath, char* info) { // It seems that the subPath value 
 			return ERR;
 		}
 
-	}
+	}	
 	
+	for (int i=0; i<=cSize; i++) {
+		printf("subPath[%d] : %s\n", i, subPath[i]);
+	}	
+
 	free(subPath);
+	return SUCCESS;
+}
+
+
+int dDestroy(char* targetPath, char* info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
+											 
 	return SUCCESS;
 }
 
