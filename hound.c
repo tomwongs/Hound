@@ -137,7 +137,7 @@ int tIdentifier(char *targetPath, char *info) {
 }
 
 
-int dDestroy(char *targetPath, char *info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
+int dDestroy(char* targetPath, char* info) { // It seems that the subPath value doesn't correctly hold the information when the directories are scanned. (Further investigation on this variable needed.)
 	DIR *dTarget;
 	char** subPath = (char**) malloc(sizeof(char*));
 	subPath[0] = targetPath;
@@ -178,7 +178,7 @@ int dDestroy(char *targetPath, char *info) { // It seems that the subPath value 
 
 			if (contentDir->d_type == DT_DIR) {
 				cSize++;
-				strcpy(subPath[cSize], fullPath);
+				subPath[cSize] = strdup(fullPath);
 
 			} else {
 				fDestroy(fullPath);
@@ -193,7 +193,7 @@ int dDestroy(char *targetPath, char *info) { // It seems that the subPath value 
 
 	}
 	
-
+	free(subPath);
 	return SUCCESS;
 }
 
